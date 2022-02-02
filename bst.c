@@ -206,3 +206,86 @@ void predecessor_ord_key(bst_t *T) {
 	}
 }
 
+void link(bst_t *p, bst_t *u, int x) {
+
+	if(u != NULL)
+		u->parent = p;
+	
+	if(p != NULL) {
+		if(x < p->key)
+			p->left = u;
+		else
+			p->right = u;
+	}
+}
+
+bst_t *remove_node(bst_t *T, int x) {
+
+	bst_t *u = lookup(T, x);
+	
+	if (u != NULL) { /* case 3 */
+		if(u->left != NULL && u->right != NULL) {
+			
+			bst_t *s = successor(u);
+			
+			u->key = s->key;
+			u->value = s->value;
+			x = s->key;
+			
+			u = s;
+		}
+		
+		bst_t *t;
+		if(u->left != NULL && u->right == NULL) 
+			t = u->left;	// case 2 only sx child
+		else
+			t = u->right;	// case 2 only dx child
+		
+		link(u->parent, t, x);
+		
+		if(u->parent == NULL) {
+			T = t;
+			T->parent = NULL;
+		}
+		
+		free(u);
+	}
+
+	return T;
+}
+
+void pre_order(bst_t *T) {
+/*
+	@descr: visita tutti i nodi dell'albero 
+	@param T: puntatore ad un nodo (albero)
+*/
+	if(T!=NULL) {
+		printf("data: %s\n", T->value);
+		pre_order(T->left);
+		pre_order(T->right);
+	}
+}
+
+void in_order(bst_t *T) {
+/*
+	@descr: visita tutti i nodi dell'albero
+	@param: puntatore ad un nodo (albero)
+*/
+	if(T!=NULL) {
+		in_order(T->left);
+		printf("data: %s\n", T->value);
+		in_order(T->right);
+	}
+}
+
+void post_order(bst_t *T) {
+/*
+	@descr: visita tutti i nodi dell'albero
+	@param: puntatore ad un nodo (albero)
+*/
+	if(T!=NULL) {
+		post_order(T->left);
+		post_order(T->right);
+		printf("data: %s\n", T->value);
+	}
+}
