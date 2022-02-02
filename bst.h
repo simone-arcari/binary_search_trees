@@ -61,4 +61,11 @@ bst_t *predecessor(bst_t *T);
 void successor_ord_key(bst_t *T);
 void predecessor_ord_key(bst_t *T);
 
+void link(bst_t *p, bst_t *u, int x);
+bst_t *remove_node(bst_t *T, int x);
+
+void pre_order(bst_t *T);
+void in_order(bst_t *T);
+void post_order(bst_t *T);
+
 #endif /*BFS_H_*/
