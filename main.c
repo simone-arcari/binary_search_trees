@@ -49,9 +49,12 @@ int main(void){
 	
 	printf("print the keys in descending order:\n");
 	predecessor_ord_key(D);
+	puts("");
 	
-	
+	printf("remove the root (key = 4);\n");
+	printf("and print the keys in ascending order:\n");
+	D = remove_node(D,4);
+	successor_ord_key(D);
 	
 	return 0;
 }
-
