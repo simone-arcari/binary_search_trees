@@ -24,8 +24,8 @@ typedef char* data_t;	// in this case data_t is a string
  *
  * @field	data	information that the node stores
  * @field	parent	link to the parent node
- * @field	child	link to the first child node
- * @field	sibling	link to the right brother node
+ * @field	left	link to the left child node
+ * @field	right	link to the right node
  * @field	key	unique reference of the node (integer)
 */
 typedef struct bst {
